@@ -1,3 +1,4 @@
+import random
 print("================================")
 print("           QUIZ APP")
 print("================================")
@@ -15,13 +16,13 @@ questions = [
     "answer": "B"
     }
 ]
-
+ 
 score = 0
 Que_no = 0 
 for question in questions:
     Que_no += 1 
     print("\nQuestion", Que_no, "/", len(questions))
-    print(question['question'])
+    print(random.shuffle(question['question']))
 
     for option in question['options']: 
         print(option)
@@ -33,12 +34,24 @@ for question in questions:
     elif(user_guess != question["answer"] ):
         print("incorrect")
         print("Correct answer is", question["answer"])
-    
 
-print("\nyour score is", score,"/", "3")
-percentage = (score / Que_no) * 100
-print("percentage :", percentage,"%")
+    print("\nYour scored", score,"/", "3")
+    percentage = (score / Que_no) * 100
+    print("percentage :", percentage,"%")
+    if(percentage >= 50):
+        print("Result: PASS!")
+    else:
+        print('Result: FAIL!')
+    print("-----------------------------------")
 
-        
+    ask_Again = input("Do you want another calculation? (y/n): ").lower()
+    if(ask_Again == "n"):
+        break
+    elif(ask_Again == "y"):
+        continue
+    else:
+        print("Please enter y or n...")   
+
+
     
     
