@@ -22,7 +22,7 @@ Que_no = 0
 for question in questions:
     Que_no += 1 
     print("\nQuestion", Que_no, "/", len(questions))
-    print(random.shuffle(question['question']))
+    print(question['question'])
 
     for option in question['options']: 
         print(option)
