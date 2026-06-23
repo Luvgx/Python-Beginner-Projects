@@ -1,25 +1,45 @@
 tasks = []
 
-def add_task():
-    tasks.append(input("Enter Task : "))
-    print("✅ Task Added Successfully!")
+def add_task(number1):
+    for i1 in range(number1):
+        tasks.append(input(f"Enter task {i1+1} :"))
+        print("✅ Task Added Successfully!")
 
 def view_task():
-    print(tasks)
     if(len(tasks) == 0):
         print("No tasks available.")
+    else:
+        for number, task in enumerate(tasks, start=1):
+            print(f"{number}. {task}")
 
 def update_task():
-    index = int(input("which number of task you want to update : "))
-    update = input("Enter new task : ")
-    tasks[index] = update
-    print("✅ Task Updated Successfully!")
+    if(len(tasks) == 0):
+        print("No tasks available.")
+    else:
+        print("================================")
+        index = int(input("Enter task number to update : "))
+        if(index > len(tasks)):
+            print("Invalid task number!")
+        elif(index <= 0):
+            print("Invalid task number!")
+        else:
+            update = input("Enter new task : ")
+            tasks[index-1] = update
+            print("✅ Task Updated Successfully!")
 
 def remove_task():
-    toRemove = int(input("Enter task number to remove : "))
-    tasks.pop(toRemove-1)
-    removedtask = tasks[toRemove-1]
-    print(removedtask ,"Removed Successfully!")
+    if(len(tasks) == 0):
+        print("📋 No tasks available.\nAdd a task first!")
+    else:
+        toRemove = int(input("Enter task number to remove : "))
+        if(toRemove > len(tasks)):
+            print("Invalid task number!")
+        elif(toRemove < 1):
+            print("Invalid task number!")
+        else:
+            removedtask = tasks.pop(toRemove-1)
+            # removedtask = tasks[toRemove-1]
+            print(removedtask ,"Removed Successfully!")
 
 def todolist():
     while True:
@@ -32,22 +52,30 @@ def todolist():
         print("4. Remove Task")
         print("5. Exit")
         option = int(input("Choose an option : "))
+        print("---------------------------------")
             
         if(option == 1):
-            numberofTask = int(input("Enter How many task you want to add : "))
-            for i in range(1, numberofTask+1):
-                if(option == 1):
-                    add_task()
-                elif(option == 2):
-                    view_task()
-                elif(option == 3):
-                    update_task()
-                elif(option == 4):
-                    remove_task()
-                elif(option == 5):
-                    print("Closing program...")
-                    break
-                else:
-                    print("Invaild input, please try again")
-                    continue
+            numberofTask = int(input("\nEnter number of tasks you want to add : "))
+            if(numberofTask <= 0):
+                print("Please enter at least 1 task.")
+                continue
+            add_task(numberofTask)
+        elif(option == 2):
+            view_task()
+        elif(option == 3):
+            view_task()
+            update_task()
+        elif(option == 4):
+            view_task()
+            remove_task()
+        elif(option == 5):
+            print("\n================================")
+            print("Thank you for using To-Do List!\nGoodbye 👋")
+            print("================================\n")
+            break
+        else:
+            print("\n================================")
+            print("Invaild input, please try again")
+            print("================================\n")
+            continue
 todolist()
