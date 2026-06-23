@@ -14,7 +14,7 @@ def view_task():
 
 def update_task():
     if(len(tasks) == 0):
-        print("No tasks available.")
+        print("📋 No tasks available.\nAdd a task first!")
     else:
         print("================================")
         index = int(input("Enter task number to update : "))
@@ -38,7 +38,6 @@ def remove_task():
             print("Invalid task number!")
         else:
             removedtask = tasks.pop(toRemove-1)
-            # removedtask = tasks[toRemove-1]
             print(removedtask ,"Removed Successfully!")
 
 def todolist():
